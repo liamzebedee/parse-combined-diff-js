@@ -97,9 +97,22 @@ index <hash>..<hash> <mode>`.split(`\n`);
             let hunkInfo = line.split(/\@\@\s/)[1].trim()
             let [a,b] = hunkInfo.split(' ')
             
+            // Each hunk range is of the format l,s where 
+            // - l is the starting line number and 
+            // - s is the number of lines the change hunk applies to for each respective file. 
+            // 
+            // In many versions of GNU diff, each range can omit the comma and trailing value s, 
+            // in which case s defaults to 1. 
+            // 
+            // Note that the only really interesting value is the l line number of the first range; all the other values can be computed from the diff.
+
             function parseHunkLocation(loc) {
                 // first char is +/-
-                return loc.slice(1).split(',').map(s => parseInt(s))
+                let ab = loc.slice(1).split(',')
+                if(ab.length == 1) {
+                    ab.push('1')
+                }
+                return ab.map(s => parseInt(s))
             }
 
             a = parseHunkLocation(a)
