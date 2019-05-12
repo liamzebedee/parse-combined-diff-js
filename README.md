@@ -1,5 +1,5 @@
 # parse-combined-diff-js
-Browser/Node lib to parse diffs in the [combined diff format](https://git-scm.com/docs/git-diff#_combined_diff_format), as produced by git.
+Browser/Node lib to parse diffs in the unified+[combined](https://git-scm.com/docs/git-diff#_combined_diff_format) diff formats, as produced by git.
 
 Just a microlib, no deps. GPL v3.
 
